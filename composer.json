@@ -1,10 +1,10 @@
 {
-    "name": "singi/yitool",
+    "name": "singi2016cn/yitool",
     "description": "tools for php, Inspired by hutool",
     "license": "MIT",
     "authors": [
         {
-            "name": "singi",
+            "name": "singi2016cn",
             "email": "787575327@qq.com"
         }
     ],
