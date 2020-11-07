@@ -8,6 +8,12 @@
             "email": "787575327@qq.com"
         }
     ],
+    "config": {
+        "platform": {
+            "php": "7.3"
+        },
+        "sort-packages": true
+    },
     "prefer-stable": true,
     "require": {
         "php": ">=7.3",
@@ -25,15 +31,13 @@
         "phpunit/phpunit": "^9.4"
     },
     "autoload": {
-        "classmap": [
-            "src/"
-        ],
-        "files": ["tests/HelloWorldTest.php"]
+        "psr-4": {
+            "YiTool\\": "src/"
+        }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/"
-        ],
-        "files": ["tests/HelloWorldTest.php"]
+        "psr-4": {
+            "YiTool\\": "tests/"
+        }
     }
 }
