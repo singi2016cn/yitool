@@ -21,7 +21,10 @@
     "ext-json": "*",
     "ext-libxml": "*",
     "ext-mbstring": "*",
-    "ext-xml": "*"
+    "ext-xml": "*",
+    "ext-curl": "*",
+    "ext-soap": "*",
+    "ext-fileinfo": "*"
   },
   "type": "library",
   "keywords": [
