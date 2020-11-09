@@ -5,13 +5,9 @@ tools for php, Inspired by hutool
 # 安装 `install`
 
 ```
-composer require singi/yitool
+composer require singi2016cn/yitool
 ```
 
 # 使用 `use`
 
-```php
-require 'vendor/autoload.php';
-
-
-```
+> 查看 [示例](example.php)
