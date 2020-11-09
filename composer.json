@@ -38,10 +38,6 @@
   "autoload-dev": {
     "psr-4": {
       "YiTool\\Tests\\": "tests/"
-    },
-    "classmap": [
-      "tests/",
-      "tests/HelloWorldTest.php"
-    ]
+    }
   }
 }
