@@ -12,27 +12,6 @@ class File
     const APPLICATION_OCTET_STREAM = 'application/octet-stream';
 
     /**
-     * 获取本地临时文件路径
-     * @return bool|string
-     */
-    public static function getLocalFile()
-    {
-        return tempnam(sys_get_temp_dir(), self::TEMPNAM_PREFIX);
-    }
-
-    /**
-     * 从 URL 返回本地文件地址
-     * @param string $url
-     * @return bool|string
-     */
-    public static function getLocalFileFromUrl($url)
-    {
-        $localFile = self::getLocalFile();
-        file_put_contents($localFile, file_get_contents($url));
-        return $localFile;
-    }
-
-    /**
      * 从 URL 返回表单文件格式数组
      * @param string $url
      * @return array
@@ -49,16 +28,24 @@ class File
     }
 
     /**
-     * 从 URL 获取 CURLFile
+     * 从 URL 返回本地文件地址
      * @param string $url
-     * @return CURLFile
+     * @return bool|string
      */
-    public static function getCurlFileFromUrl($url)
+    public static function getLocalFileFromUrl($url)
     {
-        $localFile = self::getLocalFileFromUrl($url);
-        $mimeType = self::getFileMimeTypeFormFileName($localFile);
-        $postName = pathinfo($localFile, PATHINFO_BASENAME);
-        return curl_file_create($localFile, $mimeType, $postName);
+        $localFile = self::getLocalFile();
+        file_put_contents($localFile, file_get_contents($url));
+        return $localFile;
+    }
+
+    /**
+     * 获取本地临时文件路径
+     * @return bool|string
+     */
+    public static function getLocalFile()
+    {
+        return tempnam(sys_get_temp_dir(), self::TEMPNAM_PREFIX);
     }
 
     /**
@@ -76,6 +63,19 @@ class File
     }
 
     /**
+     * 从 URL 获取 CURLFile
+     * @param string $url
+     * @return CURLFile
+     */
+    public static function getCurlFileFromUrl($url)
+    {
+        $localFile = self::getLocalFileFromUrl($url);
+        $mimeType = self::getFileMimeTypeFormFileName($localFile);
+        $postName = pathinfo($localFile, PATHINFO_BASENAME);
+        return curl_file_create($localFile, $mimeType, $postName);
+    }
+
+    /**
      * 文件转 base64
      * @param string $fileName
      * @param string $mimeType
@@ -84,7 +84,7 @@ class File
     public static function file2Base64($fileName, $mimeType = '')
     {
         $base64Template = 'data:%s;base64,%s';
-        if (empty($mimeType)){
+        if (empty($mimeType)) {
             $mimeType = self::getFileMimeTypeFormFileName($fileName) ?: self::APPLICATION_OCTET_STREAM;
         }
         $base64 = base64_encode(file_get_contents($fileName));

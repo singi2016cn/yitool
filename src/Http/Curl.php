@@ -13,6 +13,17 @@ class Curl
 
     /**
      * @param string $url
+     * @param array $data
+     * @return bool|string
+     * @throws Exception
+     */
+    public static function get($url, $data = [])
+    {
+        return self::request($url, http_build_query($data), [], false);
+    }
+
+    /**
+     * @param string $url
      * @param mixed $data
      * @param array $headers
      * @param bool $isPost
@@ -76,9 +87,9 @@ class Curl
      * @return bool|string
      * @throws Exception
      */
-    public static function get($url, $data = [])
+    public static function postMultipartFormData($url, $data)
     {
-        return self::request($url, http_build_query($data), [], false);
+        return self::post($url, $data);
     }
 
     /**
@@ -91,17 +102,6 @@ class Curl
     public static function post($url, $data, $headers = [])
     {
         return self::request($url, $data, $headers);
-    }
-
-    /**
-     * @param string $url
-     * @param array $data
-     * @return bool|string
-     * @throws Exception
-     */
-    public static function postMultipartFormData($url, $data)
-    {
-        return self::post($url, $data);
     }
 
     /**
