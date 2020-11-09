@@ -1,3 +1,4 @@
 /vendor/
 /unit/
 /.idea/
+/composer.lock
