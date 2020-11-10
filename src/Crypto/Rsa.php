@@ -7,6 +7,8 @@ namespace YiTool\Crypto;
 class Rsa
 {
     const ENCRYPT_BYTE = 2048;
+    const PREFIX = '-----BEGIN PRIVATE KEY-----';
+    const SUFFIX = '-----END PRIVATE KEY-----';
 
     /**
      * 获取对应加密位数的最大长度
@@ -113,5 +115,17 @@ class Rsa
         $result = openssl_verify($originalStr, $sign, $publicKeyResource, $alg);
         openssl_free_key($publicKeyResource);
         return $result === 1 ? TRUE : FALSE;
+    }
+
+    /**
+     * 将一行文本转化为PEM格式
+     * @param $base64LineText
+     * @param $prefix
+     * @param $suffix
+     * @return string
+     */
+    public static function formatLine2Pem($base64LineText, $prefix = self::PREFIX, $suffix = self::SUFFIX)
+    {
+        return $prefix . "\n" . wordwrap($base64LineText, 64, "\n", true) . "\n" . $suffix . "\n";
     }
 }

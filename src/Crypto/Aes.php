@@ -27,7 +27,7 @@ class Aes
      * @param string $cipherText 待解密文本
      * @param string $key 秘钥
      * @param string $method 算法
-     * @return string
+     * @return string|bool
      */
     public static function decrypt($cipherText, $key, $method = Algorithm::ALGORITHM_AES_256_CBC)
     {
