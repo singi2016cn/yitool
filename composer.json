@@ -24,7 +24,8 @@
     "ext-xml": "*",
     "ext-curl": "*",
     "ext-soap": "*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "ext-openssl": "*"
   },
   "type": "library",
   "keywords": [
