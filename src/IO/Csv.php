@@ -14,8 +14,8 @@ class Csv
     {
         $row = 1;
         $res = [];
-        if (($handle = fopen($fileName, "rb")) !== FALSE) {
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        if (($handle = fopen($fileName, "rb")) !== false) {
+            while (($data = fgetcsv($handle, 1000, ",")) !== false) {
                 $row++;
                 $item = [];
                 $num = count($data);
@@ -37,16 +37,16 @@ class Csv
     public static function set($list, $fileName)
     {
         if (empty($list)) {
-            return FALSE;
+            return false;
         }
         if (empty($fileName)) {
-            return FALSE;
+            return false;
         }
         $fp = fopen($fileName, 'w+b');
         foreach ($list as $fields) {
             fputcsv($fp, $fields);
         }
         fclose($fp);
-        return TRUE;
+        return true;
     }
 }

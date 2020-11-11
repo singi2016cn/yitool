@@ -18,7 +18,7 @@ class Aes
         $ivLen = openssl_cipher_iv_length($method);
         $iv = openssl_random_pseudo_bytes($ivLen);
         $cipherTextRaw = openssl_encrypt($plainText, $method, $key, OPENSSL_RAW_DATA, $iv);
-        $hmac = hash_hmac(Algorithm::ALGORITHM_SHA256, $cipherTextRaw, $key, TRUE);
+        $hmac = hash_hmac(Algorithm::ALGORITHM_SHA256, $cipherTextRaw, $key, true);
         return base64_encode($iv . $hmac . $cipherTextRaw);
     }
 
@@ -37,7 +37,7 @@ class Aes
         $hmac = substr($c, $ivLen, $sha2len = 32);
         $cipherTextRaw = substr($c, $ivLen + $sha2len);
         $originalPlainText = openssl_decrypt($cipherTextRaw, $method, $key, OPENSSL_RAW_DATA, $iv);
-        $calCmac = hash_hmac(Algorithm::ALGORITHM_SHA256, $cipherTextRaw, $key, TRUE);
+        $calCmac = hash_hmac(Algorithm::ALGORITHM_SHA256, $cipherTextRaw, $key, true);
         if (function_exists('hash_equals')) {
             if (hash_equals($hmac, $calCmac)) {
                 return $originalPlainText;

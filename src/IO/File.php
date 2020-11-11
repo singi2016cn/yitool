@@ -101,7 +101,7 @@ class File
     {
         $fileName = $fileName ?: self::getLocalFile();
         $res = file_put_contents($fileName, base64_decode(explode(',', $base64)[1]));
-        return $res !== FALSE ? $fileName : FALSE;
+        return $res !== false ? $fileName : false;
     }
 
 }

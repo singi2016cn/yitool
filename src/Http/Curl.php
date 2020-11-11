@@ -51,17 +51,17 @@ class Curl
         $options = [
             CURLOPT_URL => $url,
             CURLOPT_POSTFIELDS => $data,
-            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT => $timeout,
         ];
         if ($isPost) {
-            $options[CURLOPT_POST] = TRUE;
+            $options[CURLOPT_POST] = true;
         }
         if (!empty($headers)) {
             $options[CURLOPT_HTTPHEADER] = $headers;
         }
         if ($isVerifyHttps) {
-            $options[CURLOPT_SSL_VERIFYPEER] = TRUE;
+            $options[CURLOPT_SSL_VERIFYPEER] = true;
             $options[CURLOPT_SSL_VERIFYHOST] = 2;
             $options[CURLOPT_SSLCERTTYPE] = 'PEM';
             $options[CURLOPT_SSLCERT] = $sslCert;
@@ -69,8 +69,8 @@ class Curl
             $options[CURLOPT_SSLKEYTYPE] = 'PEM';
             $options[CURLOPT_SSLKEY] = $sslKey;
         } else {
-            $options[CURLOPT_SSL_VERIFYPEER] = FALSE;
-            $options[CURLOPT_SSL_VERIFYHOST] = FALSE;
+            $options[CURLOPT_SSL_VERIFYPEER] = false;
+            $options[CURLOPT_SSL_VERIFYHOST] = false;
         }
         curl_setopt_array($ch, $options);
         $output = curl_exec($ch);

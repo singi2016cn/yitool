@@ -26,7 +26,8 @@
     "ext-soap": "*",
     "ext-fileinfo": "*",
     "ext-openssl": "*",
-    "ext-geoip": "*"
+    "ext-geoip": "*",
+    "ext-zip": "*"
   },
   "type": "library",
   "keywords": [

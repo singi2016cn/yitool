@@ -38,8 +38,8 @@ class Rsa
     public static function getPublicKeyAndPrivateKey($config = [])
     {
         $resource = openssl_pkey_new($config);
-        if ($resource === FALSE) {
-            return FALSE;
+        if ($resource === false) {
+            return false;
         }
         openssl_pkey_export($resource, $privateKey, null, $config);
         $detail = openssl_pkey_get_details($resource);
@@ -114,7 +114,7 @@ class Rsa
         $publicKeyResource = openssl_get_publickey($publicKey);
         $result = openssl_verify($originalStr, $sign, $publicKeyResource, $alg);
         openssl_free_key($publicKeyResource);
-        return $result === 1 ? TRUE : FALSE;
+        return $result === 1 ? true : false;
     }
 
     /**
