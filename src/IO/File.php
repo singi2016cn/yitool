@@ -5,6 +5,7 @@ namespace YiTool\IO;
 
 
 use CURLFile;
+use RuntimeException;
 
 class File
 {
@@ -34,8 +35,12 @@ class File
      */
     public static function getLocalFileFromUrl($url)
     {
+        $urlContent = file_get_contents($url);
+        if ($urlContent === false) {
+            throw new RuntimeException('get content form url failed');
+        }
         $localFile = self::getLocalFile();
-        file_put_contents($localFile, file_get_contents($url));
+        file_put_contents($localFile, $urlContent);
         return $localFile;
     }
 
