@@ -4,6 +4,7 @@
 namespace YiTool\Decompression;
 
 use Exception;
+use RuntimeException;
 use YiTool\IO\Dir;
 use ZipArchive;
 
@@ -14,13 +15,13 @@ class Zip
      * @param string $zipLocation 'a.zip'
      * @param array $fileNames ['b.php', 'c.txt', ...]
      * @param array $data [['zip_local_name' => 'a.log', 'content' => 'this is content'], ...]
-     * @throws Exception
+     * @throws RuntimeException
      */
     public static function compress($zipLocation, $fileNames = [], $data = [])
     {
         $zip = new ZipArchive();
         if ($zip->open($zipLocation, ZIPARCHIVE::CREATE | ZipArchive::OVERWRITE) !== true) {
-            throw new Exception("cannot open {$zipLocation}");
+            throw new \RuntimeException("cannot open {$zipLocation}");
         }
 
         if (!empty($fileNames)) {

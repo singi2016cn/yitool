@@ -3,8 +3,8 @@
 
 namespace YiTool\IO;
 
-
-use Exception;
+use RuntimeException;
+use UnexpectedValueException;
 
 class Dir
 {
@@ -16,17 +16,17 @@ class Dir
      * @param string $dir
      * @param bool $isFilterCurrentAndUpperDir
      * @return array
-     * @throws Exception
+     * @throws UnexpectedValueException
      */
     public static function getFilesFromDir($dir = self::CURRENT_DIR, $isFilterCurrentAndUpperDir = true)
     {
         if (is_dir($dir) === false) {
-            throw new Exception("{$dir} is not a directory");
+            throw new UnexpectedValueException("{$dir} is not a directory");
         }
         $files = [];
         if ($handle = opendir($dir)) {
             if ($handle === false) {
-                throw new Exception("{$dir} open failed");
+                throw new RuntimeException("{$dir} open failed");
             }
             while (false !== ($file = readdir($handle))) {
                 $isAddFile = false;

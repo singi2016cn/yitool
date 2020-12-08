@@ -1,8 +1,8 @@
 <?php
 
-
 namespace YiTool\IO;
 
+use UnexpectedValueException;
 
 class Csv
 {
@@ -37,10 +37,10 @@ class Csv
     public static function set($list, $fileName)
     {
         if (empty($list)) {
-            return false;
+            throw new UnexpectedValueException('list required');
         }
         if (empty($fileName)) {
-            return false;
+            throw new UnexpectedValueException('fileName required');
         }
         $fp = fopen($fileName, 'w+b');
         foreach ($list as $fields) {

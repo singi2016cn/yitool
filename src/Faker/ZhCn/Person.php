@@ -44,6 +44,7 @@ class Person
      * 名
      * @param int $num 字数
      * @return string
+     * @throws UnexpectedValueException
      */
     public static function name($num = 2): string
     {
