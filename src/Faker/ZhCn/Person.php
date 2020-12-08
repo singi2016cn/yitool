@@ -5,7 +5,8 @@ namespace YiTool\Faker\ZhCn;
 
 use UnexpectedValueException;
 use YiTool\Common;
-use YiTool\Data\Config;
+use YiTool\Data\Address;
+use YiTool\Data\Person as PersonConfig;
 
 class Person
 {
@@ -32,9 +33,9 @@ class Person
         if (!in_array($num, [1, 2])) {
             throw new UnexpectedValueException('num in 1,2');
         }
-        $config = Config::surname;
+        $config = PersonConfig::surname;
         if ($num == 2) {
-            $config = Config::compoundSurname;
+            $config = PersonConfig::compoundSurname;
         }
         $index = Common::integerDigit(1, 1, count($config) - 1);
         return $config[$index] ?? '';
@@ -57,11 +58,25 @@ class Person
 
     /**
      * 地址
-     * TODO
+     * 省市区是真实数据，详细地址是虚拟数据
      */
     public static function address(): string
     {
+        $province = Address::province();
+        $provinceIndex = mt_rand(0, count($province) - 1);
+        $provinceItem = $province[$provinceIndex] ?? [];
 
+        $cities = Address::city($provinceItem['code']);
+        $citiesIndex = mt_rand(0, count($cities) - 1);
+        $citiesItem = $cities[$citiesIndex] ?? [];
+
+        $areas = Address::area($citiesItem['code']);
+        $areasIndex = mt_rand(0, count($areas) - 1);
+        $areasItem = $areas[$areasIndex] ?? [];
+
+        $detail = sprintf('%s街%s号', Character::chineseRange([2, 3, 4, 5]), Common::integerDigit(1, 1, 1000));
+
+        return $provinceItem['name'] . $citiesItem['name'] . $areasItem['name'] . $detail;
     }
 
     /**

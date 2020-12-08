@@ -4,6 +4,8 @@
 namespace YiTool\Faker\ZhCn;
 
 
+use UnexpectedValueException;
+
 class Character
 {
     /**
@@ -19,5 +21,19 @@ class Character
             $res .= iconv('GB2312', 'UTF-8', $GB2312);
         }
         return $res;
+    }
+
+    /**
+     * 生成[...]个随机汉字
+     * @param array $numRange
+     * @return string
+     */
+    public static function chineseRange($numRange = [1]): string
+    {
+        if (empty($numRange)) {
+            throw new UnexpectedValueException('numRange required');
+        }
+        $num = $numRange[array_rand($numRange)];
+        return self::chinese($num);
     }
 }
