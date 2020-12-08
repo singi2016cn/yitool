@@ -27,7 +27,8 @@
     "ext-fileinfo": "*",
     "ext-openssl": "*",
     "ext-geoip": "*",
-    "ext-zip": "*"
+    "ext-zip": "*",
+    "ext-iconv": "*"
   },
   "type": "library",
   "keywords": [
