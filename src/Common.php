@@ -17,7 +17,7 @@ class Common
     public static function integerDigit($digit = 1, $min = 0, $max = 9): string
     {
         if ($digit < 1) {
-            throw new UnexpectedValueException('digit must gt 0');
+            throw new UnexpectedValueException('digit must > 0');
         }
         $res = '';
         for ($i = 0; $i < $digit; $i++) {
