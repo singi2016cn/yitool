@@ -97,6 +97,14 @@ var_dump(\YiTool\IO\File::getFormFileFromUrl('oss_path/aaa.xlsx'));
 
 
 /*
+ * 日期时间操作
+ * */
+
+//格式化秒成"x天x时x分x秒"
+var_dump(\YiTool\Time::format(365842));//4天5时37分22秒
+
+
+/*
  * 生成随机数据
  * */
 var_dump(\YiTool\Faker\ZhCn\Person::fullName());//石恨
