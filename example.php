@@ -1,7 +1,13 @@
 <?php
 
+use YiTool\Crypto\Desensitization;
+
 require 'vendor/autoload.php';
 
+for ($i = 0; $i < 125; $i++) {
+    var_dump($i . ':' . chr($i));
+}
+exit;
 var_dump(YiTool\HelloYiTool::hello());//hello YiTool
 
 /*
@@ -66,6 +72,12 @@ var_dump(\YiTool\Crypto\Rsa::sign('{"name":"yitool"}', $rsaSk));//P9ItjurOqz4uTo
 
 var_dump(\YiTool\Crypto\Rsa::checkSign('{"name":"yitool"}', 'P9ItjurOqz4uTobeWBPYT9Q8joc6AdNnhMyv/gAFu/u8fw7B2KSbO9fyZ1JKQdQfyW79eI1eqPVklalRuGbu202m0G9+oHmHiJ8szOtBHmd40rpdBLI2wrvcNhBRIJNbgB5MINTBHWZff1Fef56zZz01EhMZ5qnffCJojXzaKlXMYL6m6t0XwfOSYjvgBw9l3P31EGNv5+wSL7IQKRe+Wo86RgZ6n0wL7Rmcxd3h0ROMIlne07FxCF140DZyHceejUyRzMZlCeVesKf5VmqIaolEhE/KJca5Kt4KedaRyj5sZEnbo1WRtpD+mjOwKI32Z9sT7tDs9osgzxmXZKTH6w==', $rsaPk));//true
 
+/*
+ * 数据脱敏
+ * */
+//无效化
+var_dump(Desensitization::invalidation('2a2Ac1'));//******
+var_dump(Desensitization::invalidation('2a2Ac1', Desensitization::PART, 2, 2));//2a**c1
 
 /*
  * curl 操作

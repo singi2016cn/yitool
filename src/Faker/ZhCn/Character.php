@@ -36,4 +36,22 @@ class Character
         $num = $numRange[array_rand($numRange)];
         return self::chinese($num);
     }
+
+    public static function lowercaseLetter($num = 1)
+    {
+        $res = '';
+        for ($i = 0; $i < $num; $i++) {
+            $res .= chr(mt_rand(97, 122));
+        }
+        return $res;
+    }
+
+    public static function uppercaseLetter($num = 1)
+    {
+        $res = '';
+        for ($i = 0; $i < $num; $i++) {
+            $res .= chr(mt_rand(65, 90));
+        }
+        return $res;
+    }
 }
