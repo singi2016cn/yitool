@@ -80,25 +80,39 @@ class Desensitization
     }
 
     /**
-     * 平均值 TODO
+     * 平均值
      * @param array $arrVal
-     * @return string
+     * @param int $offset
+     * @return array
      */
-    public static function average($arrVal)
+    public static function average($arrVal, $offset = 0)
     {
-        /*if (empty($arrVal)) {
+        if (empty($arrVal)) {
             throw new \UnexpectedValueException('arrVal required');
         }
 
         $count = count($arrVal);
         $sum = array_sum($arrVal);
         $average = round($sum / $count, 2);
-        $offset = max();
 
+        $res = [];
+        $left = $sum;
+        $isZero = false;
         for ($i = 0; $i < count($arrVal); $i++) {
-
+            if ($isZero) {
+                $res[] = 0;
+                continue;
+            }
+            $tmp = mt_rand($average * 100, ($average + $offset) * 100) / 100;
+            if ($left < $tmp) {
+                $res[] = $left;
+                $isZero = true;
+                continue;
+            }
+            $left -= $tmp;
+            $res[] = $tmp;
         }
 
-        return '';*/
+        return $res;
     }
 }
