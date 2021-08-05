@@ -11,7 +11,7 @@ class Validate
      */
     public static function isLetter($val)
     {
-        return preg_match("/^[a-zA-Z]+$/", $val, $res) === 1 ? true : false;
+        return preg_match("/^[a-zA-Z]+$/", $val) === 1 ? true : false;
     }
 
     /**
@@ -21,17 +21,17 @@ class Validate
      */
     public static function isLowercaseLetter($val)
     {
-        return preg_match("/^[a-z]+$/", $val, $res) === 1 ? true : false;
+        return preg_match("/^[a-z]+$/", $val) === 1 ? true : false;
     }
 
     /**
-     * 是否是26个小写字母
+     * 是否是26个大写字母
      * @param string $val
      * @return bool
      */
     public static function isUppercaseLetter($val)
     {
-        return preg_match("/^[A-Z]+$/", $val, $res) === 1 ? true : false;
+        return preg_match("/^[A-Z]+$/", $val) === 1 ? true : false;
     }
 
     /**
